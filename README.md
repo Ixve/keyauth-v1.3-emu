@@ -19,6 +19,7 @@ Right click -> Copy -> String , save it in your notepad.<br>
 Put in the following regex: `[a-zA-Z0-9]{10}\"$`<br>(NOTE: If you cannot find the key using this, you can just type `keyauth.win`, press the first value, and erase the search text)<br>
 Find what seems to be your KeyAuth owner id (e.g. "3mnye99Bp3") <br>
 Right click -> Copy -> String, save it in your notepad.<br>
+Erase your search text - look for a version number, save it in your notepad.<br>
 
 Open your Cheat Engine (do not detach x64dbg yet)<br>
 Attach to your process<br>
