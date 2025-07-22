@@ -29,6 +29,6 @@ Open your Cheat Engine (do not detach x64dbg yet)<br>
 Attach to your process<br>
 Select "Value Type" -> "String"<br>
 Find the `ProcessName.exe+OFFSET` value<br>
-Right click the address and press "Copy selected address" (e.g. `Hozinum.exe+2F3170`)<br>
+Right click the address and press "Copy selected address" (e.g. `ProcName.exe+2F3170`)<br>
 Terminate the program via x64dbg and close both the debugger and Cheat Engine as we no longer need it.<br>
 Start server.bat and put in the values (For offset you would want to do `0x2F3170`, make sure your pasted values do not have quotation marks)
