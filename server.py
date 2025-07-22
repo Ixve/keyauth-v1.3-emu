@@ -13,7 +13,7 @@ from urllib.parse import parse_qs
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 from cryptography.hazmat.primitives import serialization
- 
+
 # ----------------------------------------------------------------
 # You can grab the pubkey via x64dbg - or anything that can
 # View strings during runtime
@@ -22,10 +22,10 @@ from cryptography.hazmat.primitives import serialization
 # Grab the pubkey offset via Cheat Engine.
 # I won't be reading the entire mem just for this.
 # ----------------------------------------------------------------
- 
+
 os.system("cls||clear")
- 
-# Hozinum has blacklisted process names, need to check
+
+# Common blacklisted processes
 blacklist_proc = {
     "snippingtool.exe",
     "snipping tool",
@@ -268,7 +268,7 @@ for proc in ps.process_iter(['name']):
         if proc.info['name'].startswith(blacklisted):
             print(f"[!!!!] {blacklisted} is a blacklisted process by Hozinium - please terminate it.\nIf it is a service - make sure to stop it.\nPress enter to continue once it is terminated.")
             xt = input("")
- 
+
 def config_gen():
     print("[#] Creating config file")
     OWNER_ID = str(input("owner_id => "))
@@ -288,18 +288,12 @@ def config_gen():
     with open("config.json", "w") as f:
         json.dump(data, f)
     load_config()
- 
+
 def load_config():
     if os.path.isfile("config.json"):
         with open("config.json", "r") as f:
             fr = json.load(f)
             try:
-                print("loading")
-                global OFFSET_PATCH
-                global ORIG_PUBKEY
-                global PROC_PATH
-                global OWNER_ID
-                global VERSION_NUM
                 OFFSET_PATCH = fr["OFFSET_PATCH"]
                 ORIG_PUBKEY = fr["ORIG_PUBKEY"]
                 PROC_PATH = fr["PROC_PATH"]
@@ -310,19 +304,17 @@ def load_config():
                 config_gen()
     else:
         config_gen()
- 
+
 load_config()
 OFFSET_PATCH = int(OFFSET_PATCH, 16)
 PROC_NAME = os.path.basename(PROC_PATH)
-USERS = requests.get("https://hozinum.cc/download/external/alpha.txt").text
 BLOCKHOST = "keyauth.win"
 HOST = "0.0.0.0"
 HTTP_PORT = 80
 HTTPS_PORT = 443
 USERPROFILE = os.getenv("USERPROFILE")
 SCRIPTDIR = os.path.dirname(os.path.abspath(__file__))
-print("ENTER ONE OF THESE USERS IN THE CHEAT:\n", USERS, "\n\n")
- 
+
 ##### Requirements
 print("[dbg] Making content files")
 if not os.path.isdir("served"):
@@ -338,13 +330,13 @@ with open("served\\content_init.txt", "w") as f:
 		"numOnlineUsers": "N/A - Use fetchStats() function in latest example",
 		"numKeys": "N/A - Use fetchStats() function in latest example",
 		"version": "0.1",
-		"customerPanelLink": "https://keyauth.cc/panel/Bar/Hozinum/"
+		"customerPanelLink": "https://keyauth.cc/panel/"
 	}},
 	"newSession": true,
 	"nonce": "669a9492-8f3a-4e91-8cb1-1a6be2ae66b8",
 	"ownerid": "{OWNER_ID}"
 }}""")
- 
+
 with open("served\\content_login.txt", "w") as f:
     f.write(f"""{{
 	"success": true,
@@ -368,7 +360,7 @@ with open("served\\content_login.txt", "w") as f:
 	"nonce": "9a4fa680-2f5d-4fab-b54a-80aded6e790b",
 	"ownerid": "{OWNER_ID}"
 }}""")
- 
+
 with open("served\\content_check.txt", "w") as f:
     f.write(f"""
 {{
@@ -380,9 +372,9 @@ with open("served\\content_check.txt", "w") as f:
 	"ownerid": "{OWNER_ID}"
 }}
 """)
- 
+
 ##### Patcher
-with open(f"{USERPROFILE}\\Documents\\hozinumcert\\ed.key", "rb") as f:
+with open(f"{USERPROFILE}\\Documents\\cert\\ed.key", "rb") as f:
     privkey = serialization.load_pem_private_key(f.read(), password=None)
 pubkey = privkey.public_key()
 pubkey_bytes = pubkey.public_bytes(
@@ -397,7 +389,7 @@ def find_proc(procname):
         if process.info['name'] == procname:
             return process
     return None
- 
+
 def writemem(proc_con, addr, new, expect_len):
     if len(new) != expect_len:
         print("[!] Value mismatch - cannot write memory.\n[!] Make sure you have the correct public key...\n\n")
@@ -412,12 +404,12 @@ def writemem(proc_con, addr, new, expect_len):
         return False
     except Exception as e:
         return False
- 
+
 ##### Server
  
 print("Backing up HOSTS file")
 open(os.path.join(os.environ['TEMP'], 'hosts.bak'), 'wb').write(open(r'C:\Windows\System32\drivers\etc\hosts', 'rb').read())
- 
+
 print("Sigging initialization request")
 with open("served\\content_init.txt", "rb") as f:
     init_body = f.read()
@@ -492,14 +484,14 @@ def run_http():
 def run_https():
     httpd = HTTPServer((HOST, HTTPS_PORT), ReqHandler)
     context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-    context.load_cert_chain(certfile=f"{USERPROFILE}\\Documents\\hozinumcert\\tls.crt", keyfile=f"{USERPROFILE}\\Documents\\hozinumcert\\tls.key")
+    context.load_cert_chain(certfile=f"{USERPROFILE}\\Documents\\cert\\tls.crt", keyfile=f"{USERPROFILE}\\Documents\\cert\\tls.key")
     httpd.socket = context.wrap_socket(httpd.socket, server_side=True)
     print(f"HTTPS running - PORT: {HTTPS_PORT}\n-------------------------\n")
     httpd.serve_forever()
  
 threading.Thread(target=run_http, daemon=True).start()
 threading.Thread(target=run_https, daemon=True).start()
- 
+
 len_origkey = len(ORIG_PUBKEY)
 try:
     while True:
