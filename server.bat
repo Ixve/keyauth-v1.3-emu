@@ -26,23 +26,27 @@ rmdir /s /q %USERPROFILE%\Documents\hozinumcert 2>nul
 mkdir %USERPROFILE%\Documents\hozinumcert 2>nul
 
 @REM TLS config (non-CA)
-echo "^[ req ^]" > %USERPROFILE%\Documents\hozinumcert\tls.cnf
-echo "distinguished_name ^= dn" >> %USERPROFILE%\Documents\hozinumcert\tls.cnf
-echo "prompt ^= no" >> %USERPROFILE%\Documents\hozinumcert\tls.cnf
-echo. >> %USERPROFILE%\Documents\hozinumcert\tls.cnf
-echo "^[ dn ^]" >> %USERPROFILE%\Documents\hozinumcert\tls.cnf
-echo "CN ^= keyauth^.win" >> %USERPROFILE%\Documents\hozinumcert\tls.cnf
-echo. >> %USERPROFILE%\Documents\hozinumcert\tls.cnf
-echo "^[ v3 ^]" >> %USERPROFILE%\Documents\hozinumcert\tls.cnf
-echo "basicConstraints ^= CA^:FALSE" >> %USERPROFILE%\Documents\hozinumcert\tls.cnf
-echo "keyUsage ^= digitalSignature" >> %USERPROFILE%\Documents\hozinumcert\tls.cnf
-echo "subjectAltName ^= DNS^:keyauth^.win" >> %USERPROFILE%\Documents\hozinumcert\tls.cnf
-echo "^[ alt^_names ^]" >> %USERPROFILE%\Documents\hozinumcert\tls.cnf
-echo "DNS^.1 ^= keyauth^.win" >> %USERPROFILE%\Documents\hozinumcert\tls.cnf
+> %USERPROFILE%\Documents\hozinumcert\tls.cnf (
+echo [ req ]
+echo distinguished_name = dn
+echo prompt = no
+echo.
+echo [ dn ]
+echo CN = keyauth.win
+echo.
+echo [ v3 ]
+echo basicConstraints = CA:FALSE
+echo keyUsage = digitalSignature
+echo subjectAltName = DNS:keyauth.win
+echo [ alt_names ]
+echo DNS.1 = keyauth.win
+)
 
 @REM CA cert config
-echo "^[ v3^_ca ^]" > %USERPROFILE%\Documents\hozinumcert\ca.cnf
-echo "basicConstraints ^= CA^:TRUE" >> %USERPROFILE%\Documents\hozinumcert\ca.cnf
+> %USERPROFILE%\Documents\hozinumcert\ca.cnf (
+echo [ v3_ca ]
+echo basicConstraints = CA:TRUE
+)
 
 %OPENSSL% genrsa -out %USERPROFILE%\Documents\hozinumcert\root.key 4096
 %OPENSSL% req -x509 -new -key %USERPROFILE%\Documents\hozinumcert\root.key -sha256 -days 825 -out %USERPROFILE%\Documents\hozinumcert\root.pem -subj "/CN=keyauth.win"
