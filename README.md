@@ -16,7 +16,7 @@ Put in the following regex: `[a-zA-Z0-9]{64}`<br>
 Find what seems to be your public key (e.g. "f7ab43f1cc6907bbb66d77bc0eadbfdbd0f108710d3a52b88750ad205158f64c")<br>
 Right click -> Copy -> String , save it in your notepad.<br>
 
-Put in the following regex: `[a-zA-Z0-9]{10}\"$`
+Put in the following regex: `[a-zA-Z0-9]{10}\"$`<br>(NOTE: If you cannot find the key using this, you can just type `keyauth.win`, press the first value, and erase the search text)<br>
 Find what seems to be your KeyAuth owner id (e.g. "3mnye99Bp3") <br>
 Right click -> Copy -> String, save it in your notepad.<br>
 
