@@ -7,6 +7,10 @@ Cheat Engine
 Notepad (to write down all the values)
 
 # Usage
+### Video
+https://www.youtube.com/watch?v=FatjZUFL_YU
+
+### Steps
 Open the x64dbg folder and rename x64dbg.exe to anything else
 Open x64dbg, go to Options -> Preferences and toggle the "Exit Breakpoint"<br>
 Attach to your desired process<br>
