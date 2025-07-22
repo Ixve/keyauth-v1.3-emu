@@ -269,17 +269,10 @@ for proc in ps.process_iter(['name']):
             print(f"[!!!!] {blacklisted} is a blacklisted process by Hozinium - please terminate it.\nIf it is a service - make sure to stop it.\nPress enter to continue once it is terminated.")
             xt = input("")
 
-if os.path.isfile("config.json"):
-    with open("config.json", "r") as f:
-        fr = json.load(f)
-        OFFSET_PATCH = fr["OFFSET_PATCH"]
-        ORIG_PUBKEY = fr["ORIG_PUBKEY"]
-        PROC_PATH = fr["PROC_PATH"]
-        PROC_NAME = os.path.basename(PROC_PATH)
-        OWNER_ID = fr["OWNER_ID"]
-else:
-    print("[#] Missing config.json, generating.")
+def config_gen():
+    print("[#] Creating config file")
     OWNER_ID = str(input("owner_id => "))
+    VERSION_NUM = str(input("version_number => "))
     OFFSET_PATCH = str(input("pubkey offset => "))
     ORIG_PUBKEY = str(input("pubkey => "))
     if not len(ORIG_PUBKEY) == int(64):
@@ -294,8 +287,25 @@ else:
     data = {"OWNER_ID": OWNER_ID, "OFFSET_PATCH": OFFSET_PATCH, "ORIG_PUBKEY": ORIG_PUBKEY, "PROC_PATH": PROC_PATH}
     with open("config.json", "w") as f:
         json.dump(data, f)
+            
+
+if os.path.isfile("config.json"):
+    with open("config.json", "r") as f:
+        fr = json.load(f)
+        try:
+            OFFSET_PATCH = fr["OFFSET_PATCH"]
+            ORIG_PUBKEY = fr["ORIG_PUBKEY"]
+            PROC_PATH = fr["PROC_PATH"]
+            OWNER_ID = fr["OWNER_ID"]
+            VERSION_NUM = fr["VERSION_NUM"]
+        except KeyError:
+            print("[!] Config invalid - regenerating")
+            config_gen()
+else:
+    config_gen()
 
 OFFSET_PATCH = int(OFFSET_PATCH, 16)
+PROC_NAME = os.path.basename(PROC_PATH)
 USERS = requests.get("https://hozinum.cc/download/external/alpha.txt").text
 BLOCKHOST = "keyauth.win"
 HOST = "0.0.0.0"
