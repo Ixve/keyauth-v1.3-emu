@@ -284,7 +284,7 @@ def config_gen():
         print("[!] Invalid process path")
         time.sleep(1.5)
         exit()
-    data = {"OWNER_ID": OWNER_ID, "OFFSET_PATCH": OFFSET_PATCH, "ORIG_PUBKEY": ORIG_PUBKEY, "PROC_PATH": PROC_PATH}
+    data = {"OWNER_ID": OWNER_ID, "VERSION_NUM": VERSION_NUM, "OFFSET_PATCH": OFFSET_PATCH, "ORIG_PUBKEY": ORIG_PUBKEY, "PROC_PATH": PROC_PATH}
     with open("config.json", "w") as f:
         json.dump(data, f)
             
