@@ -1,5 +1,5 @@
 # Note
-This emulator was made for a cheat named 'Hozinum' - you *will* need to modify the batch file and the script if you want to use this for other programs.
+This emulator may not be super duper universal and may require changing the script. Open a issue if you are facing a.... issue.
 
 # Requirements
 x64dbg (With ScyllaHide)<br>
