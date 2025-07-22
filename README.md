@@ -1,2 +1,26 @@
-# keyauth-v1.3-emu
-A server emulator for KeyAuth v1.3
+# Requirements
+x64dbg (With ScyllaHide)<br>
+Cheat Engine
+Notepad (to write down all the values)
+
+# Usage
+Open the x64dbg folder and rename x64dbg.exe to anything else
+Open x64dbg, go to Options -> Preferences and toggle the "Exit Breakpoint"<br>
+Attach to your desired process<br>
+Right click inside the disassembler -> Search for -> All modules -> String references<br>
+Press the regex toggle on the bottom right<br>
+Put in the following regex: `[a-zA-Z0-9]{64}`<br>
+Find what seems to be your public key (e.g. "f7ab43f1cc6907bbb66d77bc0eadbfdbd0f108710d3a52b88750ad205158f64c")<br>
+Right click -> Copy -> String , save it in your notepad.<br>
+
+Put in the following regex: `[a-zA-Z0-9]{10}\"$`
+Find what seems to be your KeyAuth owner id (e.g. "3mnye99Bp3") <br>
+Right click -> Copy -> String, save it in your notepad.<br>
+
+Open your Cheat Engine (do not detach x64dbg yet)<br>
+Attach to your process<br>
+Select "Value Type" -> "String"<br>
+Find the `ProcessName.exe+OFFSET` value<br>
+Right click the address and press "Copy selected address" (e.g. `Hozinum.exe+2F3170`)<br>
+Terminate the program via x64dbg and close both the debugger and Cheat Engine as we no longer need it.<br>
+Start server.bat and put in the values (For offset you would want to do `0x2F3170`, make sure your pasted values do not have quotation marks)
