@@ -15,8 +15,12 @@ where python >nul 2>nul
 if %ERRORLEVEL%==0 set PYTHON=python
 set OPENSSL="C:\Program Files\OpenSSL-Win64\bin\openssl.exe"
 
-echo Grabbing OpenSSL installer^.^.^.
-curl -k https://slproweb.com/download/Win64OPENSSL_Light-3_5_1.msi -o %USERPROFILE%\Downloads\OpenSSL.msi
+cls
+echo Please install the OpenSSL Light ^(MSI^)
+echo Unfortunately I am not able to automatically obtain it from their site.
+echo Press Enter once it's installed ^(TO THE DEFAULT LOCATION^)
+start https://slproweb.com/products/Win32OpenSSL.html
+timeout /t -1
 
 echo Running OpenSSL installer^.^.^.
 msiexec /i %USERPROFILE%\Downloads\OpenSSL.msi /qn
@@ -60,13 +64,10 @@ certutil -addstore root %USERPROFILE%\Documents\cert\root.pem
 %OPENSSL% pkey -in %USERPROFILE%\Documents\cert\ed.key -pubout -out %USERPROFILE%\Documents\cert\ed.pub
 
 echo Prerequisites
-%PYTHON% -m pip install pymem
-%PYTHON% -m pip install psutil
-%PYTHON% -m pip install cryptography
-
-echo Getting server script^.^.^.
-curl -k https://raw.githubusercontent.com/Ixve/keyauth-v1.3-emu/refs/heads/main/server.py -o server.py
+%PYTHON% -m pip install pymem 1>nul2>nul
+%PYTHON% -m pip install psutil 1>nul2>nul
+%PYTHON% -m pip install cryptography 1>nul2>nul
 
 echo Starting server^.^.^.
-start %PYTHON% server.py
+start %PYTHON% server_v2.py
 timeout /t 3 /nobreak
