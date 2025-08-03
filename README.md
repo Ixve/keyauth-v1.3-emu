@@ -8,7 +8,7 @@ Cheat Engine (NOW OPTIONAL)
 
 # Usage
 ### Video
-https://youtu.be/TL1ID4sbU1M - Showcase/Tutorial #1
+https://youtu.be/TL1ID4sbU1M - Showcase/Tutorial #1<br>
 https://youtu.be/xSofBJGAfTQ - Showcase/Tutorial #2
 
 ### Steps
