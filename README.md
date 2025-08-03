@@ -8,7 +8,8 @@ Cheat Engine (NOW OPTIONAL)
 
 # Usage
 ### Video
-https://www.youtube.com/watch?v=FatjZUFL_YU
+https://youtu.be/TL1ID4sbU1M - Showcase/Tutorial #1
+https://youtu.be/xSofBJGAfTQ - Showcase/Tutorial #2
 
 ### Steps
 Open the x64dbg folder and rename x64dbg.exe to anything else
