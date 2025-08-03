@@ -1,10 +1,10 @@
 # Note
-This emulator may not be super duper universal and may require changing the script. Open a issue if you are facing a.... issue.
+Emulator has been revamped as of 08/03/2025 - it should be pretty universal now, however some people might still face issues.<br>
+Open an issue ticket rather than contacting me directly.
 
 # Requirements
 x64dbg (With ScyllaHide)<br>
-Cheat Engine
-Notepad (to write down all the values)
+Cheat Engine (NOW OPTIONAL)
 
 # Usage
 ### Video
@@ -19,12 +19,10 @@ Press the regex toggle on the bottom right<br>
 Put in the following regex: `[a-zA-Z0-9]{64}`<br>
 Find what seems to be your public key (e.g. "f7ab43f1cc6907bbb66d77bc0eadbfdbd0f108710d3a52b88750ad205158f64c")<br>
 Right click -> Copy -> String , save it in your notepad.<br>
+Copy just the public key string<br>
+Run server.py, run patcher.py, put the found public key inside. That's it<br>
 
-Put in the following regex: `[a-zA-Z0-9]{10}\"$`<br>(NOTE: If you cannot find the key using this, you can just type `keyauth.win`, press the first value, and erase the search text)<br>
-Find what seems to be your KeyAuth owner id (e.g. "3mnye99Bp3") <br>
-Right click -> Copy -> String, save it in your notepad.<br>
-Erase your search text - look for a version number, save it in your notepad.<br>
-
+# LegacyPatch -- Patching via offset rather than memory scanner (OPTIONAL)
 Open your Cheat Engine (do not detach x64dbg yet)<br>
 Attach to your process<br>
 Select "Value Type" -> "String"<br>
