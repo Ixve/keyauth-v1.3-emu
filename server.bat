@@ -64,9 +64,11 @@ certutil -addstore root %USERPROFILE%\Documents\cert\root.pem
 %OPENSSL% pkey -in %USERPROFILE%\Documents\cert\ed.key -pubout -out %USERPROFILE%\Documents\cert\ed.pub
 
 echo Prerequisites
-%PYTHON% -m pip install pymem 1>nul2>nul
-%PYTHON% -m pip install psutil 1>nul2>nul
-%PYTHON% -m pip install cryptography 1>nul2>nul
+%PYTHON% -m pip install --upgrade pip
+%PYTHON% -m pip install requests
+%PYTHON% -m pip install pymem
+%PYTHON% -m pip install psutil
+%PYTHON% -m pip install cryptography
 
 echo Starting server^.^.^.
 start %PYTHON% server_v2.py
