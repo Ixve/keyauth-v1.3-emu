@@ -266,7 +266,7 @@ blacklist_proc = {
 for proc in ps.process_iter(['name']):
     for blacklisted in blacklist_proc:
         if proc.info['name'].startswith(blacklisted):
-            print(f"[!!!!] {blacklisted} is a blacklisted process by Hozinium - please terminate it.\nIf it is a service - make sure to stop it.\nPress enter to continue once it is terminated.")
+            print(f"[!!!!] {blacklisted} is a commonly blacklisted process - please terminate it.\nIf it is a service - make sure to stop it.\nPress enter to continue once it is terminated.")
             xt = input("")
 
 def config_gen():
@@ -294,6 +294,11 @@ def load_config():
         with open("config.json", "r") as f:
             fr = json.load(f)
             try:
+		global OFFSET_PATCH
+                global ORIG_PUBKEY
+                global PROC_PATH
+                global OWNER_ID
+                global VERSION_NUM
                 OFFSET_PATCH = fr["OFFSET_PATCH"]
                 ORIG_PUBKEY = fr["ORIG_PUBKEY"]
                 PROC_PATH = fr["PROC_PATH"]
