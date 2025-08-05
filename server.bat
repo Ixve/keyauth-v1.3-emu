@@ -70,6 +70,16 @@ echo Prerequisites
 %PYTHON% -m pip install psutil
 %PYTHON% -m pip install cryptography
 
+echo Grabbing server script
+curl -k https://raw.githubusercontent.com/Ixve/keyauth-v1.3-emu/refs/heads/main/server.py -o server.py
+
+echo Grabbing patcher script
+https://raw.githubusercontent.com/Ixve/keyauth-v1.3-emu/refs/heads/main/patcher.py -o patcher.py
+
 echo Starting server^.^.^.
-start %PYTHON% server_v2.py
+start %PYTHON% server.py
+
+echo Starting patcher^.^.^.
+start %PYTHON% patcher.py
+
 timeout /t 3 /nobreak
