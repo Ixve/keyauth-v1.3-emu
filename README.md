@@ -1,17 +1,24 @@
 # Note
-Emulator has been revamped as of 08/03/2025 - it should be pretty universal now, however some people might still face issues.<br>
-Open an issue ticket rather than contacting me directly.
+The patcher has the public key hardcoded - if you are 100% sure the public key is different from what is hardcoded in the script, you can either change it in the script itself or change it in the configuration file post-generation.<br>
+Open an issue ticket rather than contacting me directly if you have any problems.
 
 # Requirements
-x64dbg (With ScyllaHide)<br>
-Cheat Engine (NOW OPTIONAL)
+Python (Preferably 3.9 or newer)<br>
+Optional requirement: Renamed x64dbg with ScyllaHide plugin<br>
+Optional requirement: Renamed Cheat Engine<br>
 
 # Usage
-### Video
+Open server.py<br>
+Open patcher.py<br>
+Drag in your program<br>
+That's all.<br>
+<br><br><br>
+
+### Video/Showcase
 https://youtu.be/TL1ID4sbU1M - Showcase/Tutorial #1<br>
 https://youtu.be/xSofBJGAfTQ - Showcase/Tutorial #2
 
-### Steps
+### Finding pubkey (OPTIONAL)
 Open the x64dbg folder and rename x64dbg.exe to anything else
 Open x64dbg, go to Options -> Preferences and toggle the "Exit Breakpoint"<br>
 Attach to your desired process<br>
@@ -23,7 +30,7 @@ Right click -> Copy -> String , save it in your notepad.<br>
 Copy just the public key string<br>
 Run server.py, run patcher.py, put the found public key inside. That's it<br>
 
-# LegacyPatch -- Patching via offset rather than memory scanner (OPTIONAL)
+### LegacyPatch -- Patching via offset rather than memory scanner (OPTIONAL)
 Open your Cheat Engine (do not detach x64dbg yet)<br>
 Attach to your process<br>
 Select "Value Type" -> "String"<br>
