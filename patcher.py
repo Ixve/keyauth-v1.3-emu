@@ -19,7 +19,6 @@ from cryptography.hazmat.primitives import serialization
 legacy_offset = False
 
 
-
 os.system("cls||clear")
 def config_gen():
     print("[#] Generating new config file")
@@ -27,12 +26,6 @@ def config_gen():
         global PUBKEY_OFFSET
         PUBKEY_OFFSET = str(input("Public key offset => "))
     global ORIG_PUBKEY, PROC_PATH
-    
-    ORIG_PUBKEY = str(input("Original public key => "))
-    if not len(ORIG_PUBKEY) == int(64):
-        print(f"[!] Public key is invalid, your key length: {len(ORIG_PUBKEY)}, expected length: 64")
-        time.sleep(1.5)
-        exit()
 
     PROC_PATH = str(input("Process path (Drag and drop) =>  "))
     try:
@@ -42,6 +35,8 @@ def config_gen():
     except:
         print(f"[!] Failed to get path base name, aborting")
         exit()
+    
+    ORIG_PUBKEY = "5586b4bc69c7a4b487e4563a4cd96afd39140f919bd31cea7d1c6a1e8439422b"
 
     if legacy_offset:
         data = {"PUBKEY_OFFSET": PUBKEY_OFFSET, "ORIG_PUBKEY": ORIG_PUBKEY, "PROC_PATH": PROC_PATH}
