@@ -146,7 +146,7 @@ class ReqHandler(BaseHTTPRequestHandler):
                 if req_type == "init":
                     print("[KeyAuth - POST] Initialization request received, serving data...")
                     filepath = "served\\content_init.txt"
-                elif req_type == "login":
+                elif req_type == "login" or req_type == "license":
                     print("[KeyAuth - POST] Login request received, serving data...")
                     filepath = "served\\content_login.txt"
                 elif req_type == "check":
