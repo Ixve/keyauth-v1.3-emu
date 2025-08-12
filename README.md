@@ -1,19 +1,14 @@
 # Note
 The patcher has the public key hardcoded - if you are 100% sure the public key is different from what is hardcoded in the script, you can either change it in the script itself or change it in the configuration file post-generation.<br>
-Open an issue ticket rather than contacting me directly if you have any problems.
+Open an issue ticket rather than contacting me directly if you have any problems.<br><br>
+**To use the program, just open server.bat**
 
 # Requirements
 Python (Preferably 3.9 or newer)<br>
 Optional requirement: Renamed x64dbg with ScyllaHide plugin<br>
 Optional requirement: Renamed Cheat Engine<br>
 
-# Usage
-Open server.py<br>
-Open patcher.py<br>
-Drag in your program<br>
-That's all.<br>
-<br><br><br>
-
+# Miscellaneous
 ### Video/Showcase
 https://youtu.be/TL1ID4sbU1M - Showcase/Tutorial #1<br>
 https://youtu.be/xSofBJGAfTQ - Showcase/Tutorial #2
