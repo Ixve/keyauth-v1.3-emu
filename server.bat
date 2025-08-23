@@ -74,7 +74,7 @@ echo Grabbing server script
 curl -k https://raw.githubusercontent.com/Ixve/keyauth-v1.3-emu/refs/heads/main/server.py -o server.py
 
 echo Grabbing patcher script
-https://raw.githubusercontent.com/Ixve/keyauth-v1.3-emu/refs/heads/main/patcher.py -o patcher.py
+curl -k https://raw.githubusercontent.com/Ixve/keyauth-v1.3-emu/refs/heads/main/patcher.py -o patcher.py
 
 echo Starting server^.^.^.
 start %PYTHON% server.py
