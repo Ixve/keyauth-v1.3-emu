@@ -27,11 +27,12 @@ def config_gen():
         PUBKEY_OFFSET = str(input("Public key offset => "))
     global ORIG_PUBKEY, PROC_PATH
 
-    PROC_PATH = str(input("Process path (Drag and drop) =>  "))
+    PROC_PATH = str(input("Process path (Drag and drop) =>  ")).strip('"').strip("'")
     try:
         if not os.path.basename(PROC_PATH).endswith(".exe"):
             print("[!] File extension is not exe, aborting")
             time.sleep(1.5)
+            exit()
     except:
         print(f"[!] Failed to get path base name, aborting")
         exit()
